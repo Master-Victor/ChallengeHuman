@@ -7,7 +7,16 @@ import StarRatings from 'react-star-ratings'
 const CardListMovie = () => {
 
     const movies = useSelector(store => store.Movies.movies)
-    const [ranking, setRanking] = useState();
+    const [ranking, setRanking] = useState(3);
+    let movieF;
+    if( ranking < 2 ){
+        movieF = movies.filter( x => (x.vote_average/2) < 2 )
+    }else if( ranking < 4 ){
+        movieF = movies.filter( x => (x.vote_average/2) < 4 && (x.vote_average/2) > 2 )
+    }else{
+        movieF = movies.filter( x => (x.vote_average/2) <= 5 && (x.vote_average/2) > 4 )
+    }
+
 
     const rankingSubmit = (e) => {
         if( e === ranking ){
@@ -35,8 +44,8 @@ const CardListMovie = () => {
                 />
                 </Box>
             </Text>
-            {movies.map((x) => {
-                return <CardMovie key={x.id} name={x.original_title || x.name} image={x.poster_path || x.logo_path} id={x.id} />
+            {movieF.map((x) => {
+                return <CardMovie key={x.id} name={x.original_title || x.name} image={x.poster_path || x.logo_path} id={x.id} ranking={(x.vote_average/2)} />
             })}
         </Flex>
     )
