@@ -50,7 +50,7 @@ export const getMovies = () => async (dispatch) => {
 export const getMoviesDetail = (id) => async (dispatch) => {
 
     try {
-        const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=ca97fd7770844d1c83f0f67d668ddadf&language=en-US`);
+        const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_KEY}&language=en-US`);
         dispatch({
             type: GET_MOVIES_DETAIL,
             payload: res.data,
@@ -64,7 +64,7 @@ export const getMoviesSearch = (string) => async (dispatch) => {
 
     try {
         const res = 
-await axios.get(`https://api.themoviedb.org/3/search/company?api_key=ca97fd7770844d1c83f0f67d668ddadf&query=${string}&page=1`);
+await axios.get(`https://api.themoviedb.org/3/search/company?api_key=${process.env.REACT_APP_KEY}&query=${string}&page=1`);
         dispatch({
             type: GET_MOVIES_SEARCH,
             payload: res.data.results,
@@ -73,5 +73,3 @@ await axios.get(`https://api.themoviedb.org/3/search/company?api_key=ca97fd77708
         console.log(error);
     }
 }
-
-//https://api.themoviedb.org/3/search/company?api_key=ca97fd7770844d1c83f0f67d668ddadf&query=busqueda&page=1

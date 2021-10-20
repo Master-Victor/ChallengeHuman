@@ -8,15 +8,16 @@ const CardListMovie = () => {
 
     const movies = useSelector(store => store.Movies.movies)
     const [ranking, setRanking] = useState(3);
-    let movieF;
-    if( ranking < 2 ){
-        movieF = movies.filter( x => (x.vote_average/2) < 2 )
-    }else if( ranking < 4 ){
-        movieF = movies.filter( x => (x.vote_average/2) < 4 && (x.vote_average/2) > 2 )
-    }else{
-        movieF = movies.filter( x => (x.vote_average/2) <= 5 && (x.vote_average/2) > 4 )
+    let movieF = movies.map( x => x );
+    if( ranking !== 0 ){
+        if( ranking < 2 && ranking !== 0 ){
+            movieF = movies.filter( x => (x.vote_average/2) < 2 )
+        }else if( ranking < 4 ){
+            movieF = movies.filter( x => (x.vote_average/2) < 4 && (x.vote_average/2) > 2 )
+        }else if( ranking > 4 ){
+            movieF = movies.filter( x => (x.vote_average/2) <= 5 && (x.vote_average/2) > 4 )
+        }
     }
-
 
     const rankingSubmit = (e) => {
         if( e === ranking ){

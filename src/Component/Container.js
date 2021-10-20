@@ -34,7 +34,7 @@ const Container = ( { children } ) => {
       >
             {children}
         </Box>:<Box> {children} </Box>
-    ): <Center> <Spinner/> </Center>
+    ): <Center h="50vh"> <Spinner/> </Center>
 }
 
 export default Container

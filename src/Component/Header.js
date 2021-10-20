@@ -15,7 +15,6 @@ import { getMovies, getMoviesSearch } from '../Redux/moviesActions'
 const Header = () => {
 
     const dispatch = useDispatch();
-    //const handleChange = (event) => setValue(event.target.value)
     
     const changeHandler = (event)=>{
         event.preventDefault();
@@ -28,7 +27,7 @@ const Header = () => {
         }
     }
     const debouncedChangeHandler = useCallback(
-        debounce(changeHandler, 300)
+        debounce(changeHandler, 700)
         , []);
     return (
         <>
